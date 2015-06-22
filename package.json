@@ -1,10 +1,10 @@
 {
-  "name": "node-express-mongoose",
-  "description": "A boilerplate application for express mongoose",
+  "name": "chardiff",
+  "description": "An application for diffing two Diablo 3 characters",
   "version": "1.0.0",
   "author": {
-    "name": "Madhusudhan Srinivasa",
-    "email": "me@madhums.me"
+    "name": "Robert Zehnder",
+    "email": "robert@kisdigital.com"
   },
   "engines": {
     "node": "0.10.x"
@@ -44,10 +44,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/madhums/node-express-mongoose.git"
+    "url": "git://github.com/robertz/chardiff.git"
   },
   "keywords": [
-    "mvc",
-    "boilerplate"
+    "diablo3",
+    "diff"
   ]
 }
