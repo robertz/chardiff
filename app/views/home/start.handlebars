@@ -4,6 +4,8 @@
   For example, mordhel-1221 or cfjedimaster-1136
 </p>
 
+<div class="error-block"></div>
+
 <div class="row">
   <div class="col-md-6">
     <div class="col-md-4">
@@ -25,6 +27,7 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
+    var $error = $('.error-block')
     $('.player-details-left').hide();
     $(document)
      .on('click', '.left-lookup', function(event){
@@ -33,17 +36,32 @@
          cache: false
        })
        .then(function(data){
-         var $sel = $('select[name=left-char-list]');
-         $sel.empty();
-         for(var i = 0; i < data.heroes.length; i++){
-           var desc = data.heroes[i].name + ' - Level ' + data.heroes[i].level + '(' + data.heroes[i].paragonLevel + ') ' + data.heroes[i].class + ' ';
-           $('<option />', {
-             val: data.heroes[i].id,
-             text: desc
+         if(typeof data.code === 'undefined'){
+           var $sel = $('select[name=left-char-list]');
+           $sel.empty();
+           for(var i = 0; i < data.heroes.length; i++){
+             var desc = data.heroes[i].name + ' - Level ' + data.heroes[i].level + '(' + data.heroes[i].paragonLevel + ') ' + data.heroes[i].class + ' ';
+             $('<option />', {
+               val: data.heroes[i].id,
+               text: desc
+             })
+             .appendTo($sel);
+           };
+           $('.player-details-left').show();
+         }
+         else {
+           $('<p />', {
+             class: 'bg-danger',
+             text: 'That account was not found!'
            })
-           .appendTo($sel);
-         };
-         $('.player-details-left').show();
+           .appendTo($error);
+           setTimeout(function(){
+             $error.children().slideUp();
+           }, 5000);
+           setTimeout(function(){
+             $error.children().remove();
+           }, 7000);
+         }
        });
      });
   })
