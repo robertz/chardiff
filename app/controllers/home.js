@@ -30,7 +30,6 @@ exports.compare = function (req, res) {
       cdata: response
     };
     req.app.render('partials/character-info', charA, function(err, html){
-      console.log(html);
       if(!err) context.characterA = html;
     });
     battleNetService.getCharacter(req.params.battletag2, req.params.id2, function(err, response){
@@ -39,7 +38,6 @@ exports.compare = function (req, res) {
         cdata: response
       };
       req.app.render('partials/character-info', charB, function(err, html){
-        console.log(html);
         if(!err) context.characterB = html;
         res.render('home/compare', context);
       });
