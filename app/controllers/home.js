@@ -18,6 +18,35 @@ exports.start = function (req, res) {
   });
 };
 
+exports.compare = function (req, res) {
+  var context = {
+    title: 'Compare',
+    characterA: '',
+    characterB: ''
+  };
+  battleNetService.getCharacter(req.params.battletag1, req.params.id1, function(err, response){
+    var charA = {
+      layout: false,
+      cdata: response
+    };
+    req.app.render('partials/character-info', charA, function(err, html){
+      console.log(html);
+      if(!err) context.characterA = html;
+    });
+    battleNetService.getCharacter(req.params.battletag2, req.params.id2, function(err, response){
+      var charB = {
+        layout: false,
+        cdata: response
+      };
+      req.app.render('partials/character-info', charB, function(err, html){
+        console.log(html);
+        if(!err) context.characterB = html;
+        res.render('home/compare', context);
+      });
+    });
+  });
+};
+
 exports.characterInfo = function (req, res) {
   var context = {
     layout: false,
