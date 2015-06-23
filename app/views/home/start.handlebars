@@ -9,37 +9,51 @@
 <div class="row">
   <div class="col-md-6">
     <div class="col-md-4">
-      <input type="text" class="form-control" name="left-account" />
+      <input type="text" class="form-control left" name="left-account" />
     </div>
     <div class="col-md-8">
       <button class="left-lookup btn btn-primary">Look Up</button>
     </div>
 
     <div class="col-md-12 player-details-left">
-      <select name="left-char-list" class="form-control"></select>
+      <select name="left-char-list" class="form-control left"></select>
     </div>
 
     <div class="col-md-12 character-left"></div>
   </div>
 
   <div class="col-md-6">
+    <div class="col-md-4">
+      <input type="text" class="form-control right" name="right-account" />
+    </div>
+    <div class="col-md-8">
+      <button class="right-lookup btn btn-primary">Look Up</button>
+    </div>
 
+    <div class="col-md-12 player-details-right">
+      <select name="right-char-list" class="form-control right"></select>
+    </div>
+
+    <div class="col-md-12 character-right"></div>
   </div>
 
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
     var $error = $('.error-block')
-    $('.player-details-left').hide();
+    $('.player-details-left, .player-details-right').hide();
     $(document)
-      .on('click', '.left-lookup', function(event){
+      .on('click', '.left-lookup, .right-lookup', function(event){
+        var inputName = $(this).hasClass('left-lookup') ? 'input[name=left-account]' : 'input[name=right-account]';
+        var outputTo = $(this).hasClass('left-lookup') ? 'select[name=left-char-list]' : 'select[name=right-char-list]';
+        var detailArea = $(this).hasClass('left-lookup') ? '.player-details-left' : '.player-details-right';
        $.ajax({
-         url: '/api/account/' + $('input[name=left-account]').val(),
+         url: '/api/account/' + $(inputName).val(),
          cache: false
        })
        .then(function(data){
          if(typeof data.code === 'undefined'){
-           var $sel = $('select[name=left-char-list]');
+           var $sel = $(outputTo);
            $sel.empty();
            $('<option />', {
              val: '',
@@ -54,7 +68,7 @@
              })
              .appendTo($sel);
            };
-           $('.player-details-left').show();
+           $(detailArea).show();
          }
          else { // Houston, we have a problem
            $('<p />', {
@@ -71,14 +85,16 @@
          }
        });
      }) // end of left-lookup click event
-     .on('change', 'select[name=left-char-list]', function(event){
+     .on('change', 'select[name=left-char-list], select[name=right-char-list]', function(event){
+       var charArea = $(this).hasClass('left') ? '.character-left' : '.character-right';
+       var bnetAccount = $(this).hasClass('left') ? 'input[name=left-account]' : 'input[name=right-account]';
        if($(this).val().length){
          $.ajax({
-           url: '/character-info/' + $('input[name=left-account]').val() + '/' + $(this).val(),
+           url: '/character-info/' + $(bnetAccount).val() + '/' + $(this).val(),
            cache: false
          })
          .then(function(data){
-           $('.character-left').html(data);
+           $(charArea).html(data);
          })
        }
      });

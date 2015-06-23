@@ -3,11 +3,11 @@ body {
   padding-top: 60px;
 }
 
-.player-details-left {
+.player-details-left, .player-details-right {
   padding-top: 24px;
 }
 
-.character-left {
+.character-left, .character-right {
   margin-top: 24px;
 }
 
