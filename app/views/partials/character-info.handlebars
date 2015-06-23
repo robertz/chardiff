@@ -30,6 +30,16 @@
   </tr>
 </table>
 
+<h4>Character Stats</h4>
+<table class="table">
+  {{#each cdata.stats}}
+  <tr>
+    <td width="40%">{{@key}}</td>
+    <td>{{ this }}</td>
+  </tr>
+  {{/each}}
+</table>
+
 <h4>Active Skills</h4>
 <table class="table">
   <thead>
@@ -39,29 +49,112 @@
       <th>Rune</th>
     </tr>
   </thead>
-
   <tr>
     <td>1</td>
     <td>{{cdata.skills.active.0.skill.name}}</td>
     <td>{{cdata.skills.active.0.rune.name}}</td>
   </tr>
-
   <tr>
     <td>2</td>
     <td>{{cdata.skills.active.1.skill.name}}</td>
     <td>{{cdata.skills.active.1.rune.name}}</td>
   </tr>
-
   <tr>
     <td>3</td>
     <td>{{cdata.skills.active.2.skill.name}}</td>
     <td>{{cdata.skills.active.2.rune.name}}</td>
   </tr>
-
   <tr>
     <td>4</td>
     <td>{{cdata.skills.active.3.skill.name}}</td>
     <td>{{cdata.skills.active.3.rune.name}}</td>
   </tr>
+</table>
 
+<h4>Passive Skills</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Skill</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>1</td>
+    <td>{{cdata.skills.passive.0.skill.name}}</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>{{cdata.skills.passive.1.skill.name}}</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>{{cdata.skills.passive.2.skill.name}}</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>{{cdata.skills.passive.3.skill.name}}</td>
+  </tr>
+</table>
+
+<h4>Items</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Item</th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Head</td>
+    <td>{{cdata.items.head.name}}</td>
+  </tr>
+  <tr>
+    <td>Neck</td>
+    <td>{{cdata.items.neck.name}}</td>
+  </tr>
+  <tr>
+    <td>Shoulders</td>
+    <td>{{cdata.items.shoulders.name}}</td>
+  </tr>
+  <tr>
+    <td>Brackers</td>
+    <td>{{cdata.items.bracers.name}}</td>
+  </tr>
+  <tr>
+    <td>Hands</td>
+    <td>{{cdata.items.hands.name}}</td>
+  </tr>
+  <tr>
+    <td>Torso</td>
+    <td>{{cdata.items.torso.name}}</td>
+  </tr>
+  <tr>
+    <td>Waist</td>
+    <td>{{cdata.items.waist.name}}</td>
+  </tr>
+  <tr>
+    <td>Legs</td>
+    <td>{{cdata.items.legs.name}}</td>
+  </tr>
+  <tr>
+    <td>Feet</td>
+    <td>{{cdata.items.feet.name}}</td>
+  </tr>
+  <tr>
+    <td>Right Finger</td>
+    <td>{{cdata.items.rightFinger.name}}</td>
+  </tr>
+  <tr>
+    <td>Left Finger</td>
+    <td>{{cdata.items.leftFinger.name}}</td>
+  </tr>
+  <tr>
+    <td>Main Hand</td>
+    <td>{{cdata.items.mainHand.name}}</td>
+  </tr>
+  <tr>
+    <td>Off Hand</td>
+    <td>{{cdata.items.offHand.name}}</td>
+  </tr>
 </table>
