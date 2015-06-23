@@ -11,3 +11,9 @@ exports.index = function (req, res) {
     title: 'Character Differ'
   });
 };
+
+exports.start = function (req, res) {
+  res.render('home/start', {
+    title: 'Select a character to begin'
+  })
+}

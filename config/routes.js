@@ -5,6 +5,7 @@
 
 var mongoose = require('mongoose');
 var home = require('home');
+var api = require('api');
 
 /**
  * Expose
@@ -13,7 +14,9 @@ var home = require('home');
 module.exports = function (app, passport) {
 
   app.get('/', home.index);
+  app.get('/start', home.start);
 
+  app.get('/api/account/:id', api.getAccount);
 
   /**
    * Error handling

@@ -1,0 +1,50 @@
+<h4>{{ title }}</h4>
+
+<p>
+  For example, mordhel-1221 or cfjedimaster-1136
+</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="left-account" />
+    </div>
+    <div class="col-md-8">
+      <button class="left-lookup btn btn-primary">Look Up</button>
+    </div>
+
+    <div class="col-md-12 player-details-left">
+      <select name="left-char-list" class="form-control"/>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+
+  </div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.player-details-left').hide();
+    $(document)
+     .on('click', '.left-lookup', function(event){
+       $.ajax({
+         url: '/api/account/' + $('input[name=left-account]').val(),
+         cache: false
+       })
+       .then(function(data){
+         var $sel = $('select[name=left-char-list]');
+         $sel.empty();
+         for(var i = 0; i < data.heroes.length; i++){
+           var desc = data.heroes[i].name + ' - Level ' + data.heroes[i].level + '(' + data.heroes[i].paragonLevel + ') ' + data.heroes[i].class + ' ';
+           $('<option />', {
+             val: data.heroes[i].id,
+             text: desc
+           })
+           .appendTo($sel);
+         };
+         $('.player-details-left').show();
+       });
+     });
+  })
+</script>

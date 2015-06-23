@@ -3,16 +3,6 @@ body {
   padding-top: 60px;
 }
 
-.data-fields {
-  margin-top: 16px;
-}
-
-.data-fields div {
-  height: 38px;
-}
-
-.data-fields .form-label {
-  font-weight: 900;
-  text-align: right;
-  line-height: 38px;
+.player-details-left {
+  padding-top: 24px;
 }
