@@ -16,8 +16,10 @@
     </div>
 
     <div class="col-md-12 player-details-left">
-      <select name="left-char-list" class="form-control"/>
+      <select name="left-char-list" class="form-control"></select>
     </div>
+
+    <div class="col-md-12 character-left"></div>
   </div>
 
   <div class="col-md-6">
@@ -30,7 +32,7 @@
     var $error = $('.error-block')
     $('.player-details-left').hide();
     $(document)
-     .on('click', '.left-lookup', function(event){
+      .on('click', '.left-lookup', function(event){
        $.ajax({
          url: '/api/account/' + $('input[name=left-account]').val(),
          cache: false
@@ -39,6 +41,11 @@
          if(typeof data.code === 'undefined'){
            var $sel = $('select[name=left-char-list]');
            $sel.empty();
+           $('<option />', {
+             val: '',
+             text: 'Select a Hero'
+           })
+           .appendTo($sel);
            for(var i = 0; i < data.heroes.length; i++){
              var desc = data.heroes[i].name + ' - Level ' + data.heroes[i].level + '(' + data.heroes[i].paragonLevel + ') ' + data.heroes[i].class + ' ';
              $('<option />', {
@@ -49,7 +56,7 @@
            };
            $('.player-details-left').show();
          }
-         else {
+         else { // Houston, we have a problem
            $('<p />', {
              class: 'bg-danger',
              text: 'That account was not found!'
@@ -63,6 +70,17 @@
            }, 7000);
          }
        });
+     }) // end of left-lookup click event
+     .on('change', 'select[name=left-char-list]', function(event){
+       if($(this).val().length){
+         $.ajax({
+           url: '/character-info/' + $('input[name=left-account]').val() + '/' + $(this).val(),
+           cache: false
+         })
+         .then(function(data){
+           $('.character-left').html(data);
+         })
+       }
      });
   })
 </script>

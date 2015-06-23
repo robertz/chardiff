@@ -1,0 +1,67 @@
+<h4>Character Info</h4>
+<table class="table">
+  <tr>
+    <td width="40%">Name</td>
+    <td>{{ cdata.name }}</td>
+  </tr>
+  <tr>
+    <td>Class</td>
+    <td>{{ cdata.class }}</td>
+  </tr>
+  <tr>
+    <td>Level</td>
+    <td>{{ cdata.level }}</td>
+  </tr>
+  <tr>
+    <td>Paragon Level</td>
+    <td>{{ cdata.paragonLevel }}</td>
+  </tr>
+  <tr>
+    <td>Hardcore</td>
+    <td>{{ cdata.hardcore }}</td>
+  </tr>
+  <tr>
+    <td>Seasonal</td>
+    <td>{{ cdata.seasonal }}</td>
+  </tr>
+  <tr>
+    <td>Season Created</td>
+    <td>{{ cdata.seasonCreated }}</td>
+  </tr>
+</table>
+
+<h4>Active Skills</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Skill</th>
+      <th>Rune</th>
+    </tr>
+  </thead>
+
+  <tr>
+    <td>1</td>
+    <td>{{cdata.skills.active.0.skill.name}}</td>
+    <td>{{cdata.skills.active.0.rune.name}}</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>{{cdata.skills.active.1.skill.name}}</td>
+    <td>{{cdata.skills.active.1.rune.name}}</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>{{cdata.skills.active.2.skill.name}}</td>
+    <td>{{cdata.skills.active.2.rune.name}}</td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td>{{cdata.skills.active.3.skill.name}}</td>
+    <td>{{cdata.skills.active.3.rune.name}}</td>
+  </tr>
+
+</table>

@@ -8,16 +8,13 @@ module.exports = {
       if(!err){
         return cb(null, JSON.parse(body));
       }
-    })
+    });
   },
 
-  getCharacter: function(account, cb){
-    request('https://us.api.battle.net/d3/profile/' + account + '/hero/51865931?locale=en_US&apikey=' + credentials.bnetApiKey, function(err, response, body){
+  getCharacter: function(account, id, cb){
+    request('https://us.api.battle.net/d3/profile/' + account + '/hero/' + id + '?locale=en_US&apikey=' + credentials.bnetApiKey, function(err, response, body){
       if(!err){
-        cb(JSON.parse(response.body));
-      }
-      else{
-        cb({});
+        return cb(null, JSON.parse(body));
       }
     });
   }

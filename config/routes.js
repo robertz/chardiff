@@ -12,10 +12,14 @@ var api = require('api');
  */
 
 module.exports = function (app, passport) {
-
+  // Main routes
   app.get('/', home.index);
   app.get('/start', home.start);
 
+  // Partials
+  app.get('/character-info/:battletag/:id', home.characterInfo);
+  
+  // API related calls
   app.get('/api/account/:id', api.getAccount);
 
   /**

@@ -7,6 +7,10 @@ body {
   padding-top: 24px;
 }
 
+.character-left {
+  margin-top: 24px;
+}
+
 .error-block p {
   padding: 24px;
   border-radius: 6px;
