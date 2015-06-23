@@ -15,3 +15,21 @@ body {
   padding: 24px;
   border-radius: 6px;
 }
+
+.item {
+  display: inline-block;
+  width: 70px;
+  height: 128px;
+  text-align: center;
+}
+.finger {
+  height: 64px;
+}
+.green {
+  border-radius: 6px;
+  background-color: green;
+}
+.orange {
+  border-radius: 6px;
+  background-color: orange;
+}
