@@ -23,7 +23,7 @@
   {{#each cdata.stats}}
   <tr>
     <td width="40%">{{@key}}</td>
-    <td><span class="numbers">{{ this }}</span></td>
+    <td>{{ this }}</td>
   </tr>
   {{/each}}
 </table>
@@ -121,11 +121,6 @@
 </table>
 
 <script type="text/javascript">
-  $.fn.digits = function(){
-    return this.each(function(){
-        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
-    })
-  }
   $(document).ready(function(){
     $('span.numbers').digits();
     $('.po')
