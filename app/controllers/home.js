@@ -20,7 +20,7 @@ exports.start = function (req, res) {
 
 exports.compare = function (req, res) {
   var context = {
-    title: 'Compare',
+    title: 'Compare ',
     characterA: '',
     characterB: ''
   };
@@ -30,7 +30,10 @@ exports.compare = function (req, res) {
       cdata: response
     };
     req.app.render('partials/character-info', charA, function(err, html){
-      if(!err) context.characterA = html;
+      if(!err){
+        context.characterA = html;
+        context.title += charA.cdata.name + ' ';
+      }
     });
     battleNetService.getCharacter(req.params.battletag2, req.params.id2, function(err, response){
       var charB = {
@@ -38,7 +41,10 @@ exports.compare = function (req, res) {
         cdata: response
       };
       req.app.render('partials/character-info', charB, function(err, html){
-        if(!err) context.characterB = html;
+        if(!err){
+          context.characterB = html;
+          context.title += 'to ' + charB.cdata.name;
+        }
         res.render('home/compare', context);
       });
     });
