@@ -23,7 +23,7 @@
   {{#each cdata.stats}}
   <tr>
     <td width="40%">{{@key}}</td>
-    <td>{{ this }}</td>
+    <td><span class="numbers">{{ this }}</span></td>
   </tr>
   {{/each}}
 </table>
@@ -96,32 +96,38 @@
 </table>
 
 <h4>Items</h4>
-<table class="table">
+<table class="table equipment">
   <thead>
     <tr>
       <th>Slot</th>
       <th>Item</th>
     </tr>
   </thead>
-
-
   {{#each cdata.items}}
-    {{#if this.name}}
-      <tr>
-        <td>
-          {{@key}}
-        </td>
-        <td>
+    <tr>
+      <td>
+        {{@key}}
+      </td>
+      <td>
+        {{#if this.name}}
           <span class="item {{this.displayColor}} pull-left"><img src="//media.blizzard.com/d3/icons/items/large/{{{this.icon}}}.png" /></span>
           <span class="text {{this.displayColor}}" data-itemid="{{this.id}}">{{this.name}}</span><br />
-        </td>
-      </tr>
-    {{/if}}
+        {{else}}
+          <div class="placeholder"></div>
+        {{/if}}
+      </td>
+    </tr>
   {{/each}}
 </table>
 
 <script type="text/javascript">
+  $.fn.digits = function(){
+    return this.each(function(){
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+    })
+  }
   $(document).ready(function(){
+    $('span.numbers').digits();
     $('.po')
     .on('click', function(event){
       event.preventDefault();

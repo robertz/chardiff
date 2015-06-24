@@ -78,3 +78,7 @@ span.text.yellow {
 .permalink {
   padding: 16px;
 }
+
+.placeholder {
+  height: 128px;
+}

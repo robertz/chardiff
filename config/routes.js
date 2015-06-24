@@ -15,13 +15,13 @@ module.exports = function (app, passport) {
   // Main routes
   app.get('/', home.index);
   app.get('/start', home.start);
-  app.get('/compare/:battletag1/:id1/to/:battletag2/:id2', home.compare);
+  app.get('/compare/:region1/:battletag1/:id1/to/:region2/:battletag2/:id2', home.compare);
 
   // Partials
-  app.get('/character-info/:battletag/:id', home.characterInfo);
+  app.get('/character-info/:region/:battletag/:id', home.characterInfo);
 
   // API related calls
-  app.get('/api/account/:id', api.getAccount);
+  app.get('/api/account/:region/:id', api.getAccount);
 
   /**
    * Error handling

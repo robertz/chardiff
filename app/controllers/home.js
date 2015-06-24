@@ -35,7 +35,7 @@ mapCharacterData = function (data) {
       damage: data.stats.damage,
       toughness: data.stats.toughness,
       healing: data.stats.healing,
-      attackSpeed: data.stats.attackSpeed,
+      attackSpeed: data.stats.attackSpeed.toFixed(2),
       armor: data.stats.armor,
       strength: data.stats.strength,
       dexterity: data.stats.dexterity,
@@ -66,7 +66,7 @@ exports.compare = function (req, res) {
     characterA: '',
     characterB: ''
   };
-  battleNetService.getCharacter(req.params.battletag1, req.params.id1, function(err, response){
+  battleNetService.getCharacter(req.params.region1, req.params.battletag1, req.params.id1, function(err, response){
     var charA = {
       layout: false,
       cdata: mapCharacterData(response)
@@ -77,7 +77,7 @@ exports.compare = function (req, res) {
         context.title += charA.cdata.name + ' ';
       }
     });
-    battleNetService.getCharacter(req.params.battletag2, req.params.id2, function(err, response){
+    battleNetService.getCharacter(req.params.region2, req.params.battletag2, req.params.id2, function(err, response){
       var charB = {
         layout: false,
         cdata: mapCharacterData(response)
@@ -98,7 +98,7 @@ exports.characterInfo = function (req, res) {
     layout: false,
     cdata: {}
   };
-  battleNetService.getCharacter(req.params.battletag, req.params.id, function(err, response){
+  battleNetService.getCharacter(req.params.region, req.params.battletag, req.params.id, function(err, response){
     context.cdata = mapCharacterData(response);
     res.render('partials/character-info', context);
   });
