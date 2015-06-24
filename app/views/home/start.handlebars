@@ -100,11 +100,12 @@
          })
        }
        if($('select[name=left-char-list]').val() !== '' && $('select[name=right-char-list]').val() !== ''){
-         var permalink = '<strong>Permalink: </strong> http://' + location.hostname + '/compare/';
+         var permalink = 'http://' + location.hostname + '/compare/';
+         var tem = '<a href="{url}">{url}</a>';
          permalink += $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
          permalink += '/to/';
          permalink += $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
-         $('.permalink').html(permalink);
+         $('.permalink').html('<strong>Permalink:</strong> ' + tem.replace('{url}', permalink));
        }
      });
   })
