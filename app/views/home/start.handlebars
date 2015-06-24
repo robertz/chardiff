@@ -105,8 +105,7 @@
          permalink += $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
          permalink += '/to/';
          permalink += $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
-         tem = tem.replace('{url}', permalink);
-         $('.permalink').html('<strong>Permalink:</strong> ' + tem);
+         $('.permalink').html('<strong>Permalink:</strong> ' + tem.replace(new RegExp('{url}', 'g'), permalink));
        }
      });
   })
