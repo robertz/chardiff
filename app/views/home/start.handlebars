@@ -99,13 +99,21 @@
            $(charArea).html(data);
          })
        }
-       if($('select[name=left-char-list]').val() !== '' && $('select[name=right-char-list]').val() !== ''){
-         var permalink = 'http://' + location.hostname + '/compare/';
-         var tem = '<a href="{url}">{url}</a>';
-         permalink += $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
-         permalink += '/to/';
-         permalink += $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
-         $('.permalink').html('<strong>Permalink:</strong> ' + tem.replace(new RegExp('{url}', 'g'), permalink));
+       try{
+         if($('select[name=left-char-list] option:selected').val().length && $('select[name=right-char-list] option:selected').val().length){
+           var permalink = 'http://' + location.hostname + '/compare/';
+           var tem = '<a href="{url}">{url}</a>';
+           permalink += $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
+           permalink += '/to/';
+           permalink += $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
+           $('.permalink').html('<strong>Permalink:</strong> ' + tem.replace(new RegExp('{url}', 'g'), permalink));
+         }
+         else{
+           $('.permalink').html('');
+         }
+       }
+       catch(e){
+        $('.permalink').html('');
        }
      });
   })

@@ -6,6 +6,48 @@
 var request = require('request');
 var battleNetService = require('../services/battleNetService.js');
 
+mapCharacterData = function (data) {
+  if(typeof data.id === 'undefined') return data;
+  var res = {
+    id: data.id,
+    name: data.name,
+    class: data.class,
+    level: data.level,
+    paragonLevel: data.paragonLevel,
+    skills: data.skills,
+    items: {
+      Head: data.items.head,
+      Neck: data.items.neck,
+      Shoulders: data.items.shoulders,
+      Torso: data.items.torso,
+      Bracers: data.items.bracers,
+      Hands: data.items.hands,
+      LeftFinger: data.items.leftFinger,
+      RightFinger: data.items.rightFinger,
+      Waist: data.items.waist,
+      Legs: data.items.legs,
+      Feet: data.items.feet,
+      MainHand: data.items.mainHand,
+      OffHand: data.items.offHand
+    },
+    stats: {
+      life: data.stats.life,
+      damage: data.stats.damage,
+      toughness: data.stats.toughness,
+      healing: data.stats.healing,
+      attackSpeed: data.stats.attackSpeed,
+      armor: data.stats.armor,
+      strength: data.stats.strength,
+      dexterity: data.stats.dexterity,
+      vitality: data.stats.vitality,
+      intelligence: data.stats.intelligence,
+      lifeOnHit: data.stats.lifeOnHit
+    },
+    kills: data.kills
+  };
+  return res;
+};
+
 exports.index = function (req, res) {
   res.render('home/index', {
     title: 'Character Differ'
@@ -27,7 +69,7 @@ exports.compare = function (req, res) {
   battleNetService.getCharacter(req.params.battletag1, req.params.id1, function(err, response){
     var charA = {
       layout: false,
-      cdata: response
+      cdata: mapCharacterData(response)
     };
     req.app.render('partials/character-info', charA, function(err, html){
       if(!err){
@@ -38,7 +80,7 @@ exports.compare = function (req, res) {
     battleNetService.getCharacter(req.params.battletag2, req.params.id2, function(err, response){
       var charB = {
         layout: false,
-        cdata: response
+        cdata: mapCharacterData(response)
       };
       req.app.render('partials/character-info', charB, function(err, html){
         if(!err){
@@ -57,7 +99,7 @@ exports.characterInfo = function (req, res) {
     cdata: {}
   };
   battleNetService.getCharacter(req.params.battletag, req.params.id, function(err, response){
-    context.cdata = response;
+    context.cdata = mapCharacterData(response);
     res.render('partials/character-info', context);
   });
 };
