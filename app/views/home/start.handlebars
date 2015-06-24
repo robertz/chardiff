@@ -113,7 +113,7 @@
        try{
          if($('select[name=left-char-list] option:selected').val().length && $('select[name=right-char-list] option:selected').val().length){
            var permalink = 'http://' + location.hostname + '/compare/';
-           var tem = '<a href="{url}">{url}</a>';
+           var tem = '<a href="{url}" target="_blank">{url}</a>';
            permalink += $('select[name=left-char-region]').val() + '/' + $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
            permalink += '/to/';
            permalink += $('select[name=right-char-region]').val() + '/' + $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
