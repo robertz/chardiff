@@ -6,6 +6,8 @@
 
 <div class="error-block"></div>
 
+<div class="permalink"></div>
+
 <div class="row">
   <div class="col-md-6">
     <div class="col-md-4">
@@ -96,6 +98,13 @@
          .then(function(data){
            $(charArea).html(data);
          })
+       }
+       if($('select[name=left-char-list]').val() !== '' && $('select[name=right-char-list]').val() !== ''){
+         var permalink = '<strong>Permalink: </strong> http://' + location.hostname + '/compare/';
+         permalink += $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
+         permalink += '/to/';
+         permalink += $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
+         $('.permalink').html(permalink);
        }
      });
   })
