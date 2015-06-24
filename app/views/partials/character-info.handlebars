@@ -115,62 +115,21 @@
       <th>Item</th>
     </tr>
   </thead>
-  <tr>
-    <td><div class="item {{cdata.items.head.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.head.icon}}}.png" /></div></td>
-    <td>{{cdata.items.head.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.neck.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.neck.icon}}}.png" /></div></td>
-    <td>{{cdata.items.neck.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.shoulders.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.shoulders.icon}}}.png" /></div></td>
-    <td>{{cdata.items.shoulders.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.bracers.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.bracers.icon}}}.png" /></div></td>
-    <td>{{cdata.items.bracers.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.hands.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.hands.icon}}}.png" /></div></td>
-    <td>{{cdata.items.hands.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.torso.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.torso.icon}}}.png" /></div></td>
-    <td>{{cdata.items.torso.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.waist.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.waist.icon}}}.png" /></div></td>
-    <td>{{cdata.items.waist.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.legs.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.legs.icon}}}.png" /></div></td>
-    <td>{{cdata.items.legs.name}}</td>
-  </tr>
-  <tr>
-    <td><div class="item {{cdata.items.feet.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.feet.icon}}}.png" /></div></td>
-    <td>{{cdata.items.feet.name}}</td>
-  </tr>
-  {{#if cdata.items.leftFinger.name}}
-  <tr>
-    <td><div class="item finger {{cdata.items.leftFinger.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.leftFinger.icon}}}.png" /></div></td>
-    <td>{{cdata.items.leftFinger.name}}</td>
-  </tr>
-  {{/if}}
-  {{#if cdata.items.rightFinger.name}}
-  <tr>
-    <td><div class="item finger {{cdata.items.rightFinger.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.rightFinger.icon}}}.png" /></div></td>
-    <td>{{cdata.items.rightFinger.name}}</td>
-  </tr>
-  {{/if}}
-  <tr>
-    <td><div class="item {{cdata.items.mainHand.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.mainHand.icon}}}.png" /></div></td>
-    <td>{{cdata.items.mainHand.name}}</td>
-  </tr>
-  {{#if cdata.items.offhand.name}}
-  <tr>
-    <td><div class="item {{cdata.items.offHand.displayColor}}"><img src="//media.blizzard.com/d3/icons/items/large/{{{cdata.items.offHand.icon}}}.png" /></div></td>
-    <td>{{cdata.items.offHand.name}}</td>
-  </tr>
-  {{/if}}
+
+
+  {{#each cdata.items}}
+    {{#if this.name}}
+      <tr>
+        <td>
+          {{@key}}
+        </td>
+        <td>
+          <span class="item {{this.displayColor}} pull-left"><img src="//media.blizzard.com/d3/icons/items/large/{{{this.icon}}}.png" /></span>
+          <span class="text {{this.displayColor}}" data-itemid="{{this.id}}">{{this.name}}</span><br />
+        </td>
+      </tr>
+    {{/if}}
+  {{/each}}
+
+
 </table>
