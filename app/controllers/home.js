@@ -33,10 +33,10 @@ mapCharacterData = function (data) {
     stats: {
       life: data.stats.life,
       damage: data.stats.damage.toFixed(0),
-      toughness: data.stats.toughness,
-      healing: data.stats.healing,
+      toughness: data.stats.toughness.toFixed(0),
+      healing: data.stats.healing.toFixed(0),
       attackSpeed: data.stats.attackSpeed.toFixed(2),
-      armor: data.stats.armor,
+      armor: data.stats.armor.toFixed(0),
       strength: data.stats.strength,
       dexterity: data.stats.dexterity,
       vitality: data.stats.vitality,
