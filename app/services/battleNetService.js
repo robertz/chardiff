@@ -41,6 +41,26 @@ module.exports = {
         return cb(null, JSON.parse(body));
       }
     });
+  },
+
+  getItem: function (region, id, cb) {
+    var locale;
+    switch(region){
+      case 'us':
+        locale = 'en_US';
+        break;
+      case 'eu':
+        locale = 'en_GB';
+        break;
+      default:
+        locale = 'en_US';
+        break;
+    }
+    request('https://' + region + '.api.battle.net/d3/data/item/' + id + '?locale=' + locale + '&apikey=' + credentials.bnetApiKey, function(err, response, body){
+      if(!err){
+        return cb(null, JSON.parse(body));
+      }
+    });
   }
 
 };

@@ -51,25 +51,25 @@ body {
 }
 
 
-span.text.green {
+a.green {
   color: #87a73d;
   font-weight: 900;
   background-color: transparent;
 }
 
-span.text.orange {
+a.orange {
   color: #c29337;
   font-weight: 900;
   background-color: transparent;
 }
 
-span.text.blue {
+a.blue {
   color: #6ba9ba;
   font-weight: 900;
   background-color: transparent;
 }
 
-span.text.yellow {
+a.yellow {
   color: #b1a73c;
   font-weight: 900;
   background-color: transparent;

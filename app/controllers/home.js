@@ -96,10 +96,23 @@ exports.compare = function (req, res) {
 exports.characterInfo = function (req, res) {
   var context = {
     layout: false,
+    region: req.params.region,
     cdata: {}
   };
   battleNetService.getCharacter(req.params.region, req.params.battletag, req.params.id, function(err, response){
     context.cdata = mapCharacterData(response);
     res.render('partials/character-info', context);
+  });
+};
+
+exports.itemInfo = function (req, res) {
+  var context = {
+    layout: false,
+    region: req.params.region,
+    idata: {}
+  };
+  battleNetService.getItem(req.params.region, req.params.id, function(err, response){
+    context.idata = response;
+    res.render('partials/item-info', context);
   });
 };

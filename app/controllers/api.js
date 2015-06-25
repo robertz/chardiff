@@ -10,3 +10,9 @@ exports.getAccount = function (req, res) {
     res.json(response);
   });
 };
+
+exports.getItem = function (req, res) {
+  battleNetService.getItem(req.params.region, req.params.id, function(err, response){
+    res.json(response);
+  });
+};

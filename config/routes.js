@@ -19,9 +19,11 @@ module.exports = function (app, passport) {
 
   // Partials
   app.get('/character-info/:region/:battletag/:id', home.characterInfo);
-
+  app.get('/item-info/:region/:id', home.itemInfo);
+  
   // API related calls
   app.get('/api/account/:region/:id', api.getAccount);
+  app.get('/api/item/:region/:id', api.getItem);
 
   /**
    * Error handling

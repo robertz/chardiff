@@ -111,7 +111,7 @@
       <td>
         {{#if this.name}}
           <span class="item {{this.displayColor}} pull-left"><img src="//media.blizzard.com/d3/icons/items/large/{{{this.icon}}}.png" /></span>
-          <span class="text {{this.displayColor}}" data-itemid="{{this.id}}">{{this.name}}</span><br />
+          <span class="text"><a href="#" class="{{this.displayColor}} ajaxload" title="{{this.name}}" data-ajaxload="/item-info/{{@root.region}}/{{this.id}}">{{this.name}}</a></span><br />
         {{else}}
           <div class="placeholder"></div>
         {{/if}}
@@ -126,8 +126,10 @@
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
     })
   }
+
   $(document).ready(function(){
     $('span.numbers').digits();
+
     $('.po')
     .on('click', function(event){
       event.preventDefault();
@@ -135,5 +137,24 @@
     .popover({
       placement: 'top'
     });
+
+    $('.ajaxload').on('mouseover', function(event){
+      event.preventDefault();
+      var $this = $(this);
+      $this.off('mouseover');
+      $.ajax({
+        url: $(this).data('ajaxload'),
+        cache: true,
+        success: function(data){
+          $this.popover({
+            html: true,
+            placement: 'top',
+            content: data,
+            trigger: 'hover'
+          }).popover('show');
+        }
+      })
+    })
+
   });
 </script>

@@ -1,0 +1,25 @@
+{{ idata.flavorText }}<br />
+
+{{#if idata.attributes.primary}}
+  <h5>Primary Attributes</h5>
+  {{#each idata.attributes.primary}}
+    {{this.text}}<br />
+  {{/each}}
+  <br />
+{{/if}}
+
+{{#if idata.attributes.secondary}}
+  <h5>Secondary Attributes</h5>
+  {{#each idata.attributes.secondary}}
+    {{this.text}}<br />
+  {{/each}}
+  <br />
+{{/if}}
+
+{{#if idata.attributes.passive}}
+  <h5>Passive Attributes</h5>
+  {{#each idata.attributes.passive}}
+    {{this.text}}<br />
+  {{/each}}
+  <br />
+{{/if}}
