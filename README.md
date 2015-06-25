@@ -8,6 +8,7 @@ A utility to allow you to compare two characters and see similarities and differ
 * npm install
 * create the /config/credentials file (see below)
 * npm start
+* Mongo DB should be running on the default port (this is needed for future stuff)
 
 Example credentials.js file
 ```
