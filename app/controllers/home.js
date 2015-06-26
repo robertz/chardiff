@@ -8,6 +8,11 @@ var battleNetService = require('../services/battleNetService.js');
 
 mapCharacterData = function (data) {
   if(typeof data.id === 'undefined') return data;
+
+  for(var k in data.items){
+    if(typeof data.items[k].name !== 'undefined') data.items[k].slug = slugify(data.items[k].name);
+  }
+  
   var res = {
     id: data.id,
     name: data.name,
@@ -48,6 +53,15 @@ mapCharacterData = function (data) {
   return res;
 };
 
+function slugify(text) {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
 exports.index = function (req, res) {
   res.render('home/index', {
     title: 'Compare two Diablo 3 characters'
@@ -63,6 +77,7 @@ exports.start = function (req, res) {
 exports.compare = function (req, res) {
   var context = {
     title: 'Compare ',
+    region: req.params.region1,
     characterA: '',
     characterB: ''
   };
