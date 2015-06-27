@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">{{idata.typeName}}</div>
+
+  <div class="col-md-12">
+    <strong>Primary</strong>
+    <ul>
+      {{#each idata.attributes.primary}}
+        <li>{{this.text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="col-md-12">
+    <strong>Secondary</strong>
+    <ul>
+      {{#each idata.attributes.secondary}}
+        <li>{{this.text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  {{#if idata.gems}}
+    <div class="col-md-12">
+      <strong>Gems</strong>
+      <ul>
+        {{#each idata.gems}}
+          <li>{{this.item.name}}: {{this.attributes.primary.0.text}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</div>

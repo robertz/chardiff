@@ -12,7 +12,7 @@ mapCharacterData = function (data) {
   for(var k in data.items){
     if(typeof data.items[k].name !== 'undefined') data.items[k].slug = slugify(data.items[k].name);
   }
-  
+
   var res = {
     id: data.id,
     name: data.name,
@@ -129,5 +129,16 @@ exports.itemInfo = function (req, res) {
   battleNetService.getItem(req.params.region, req.params.id, function(err, response){
     context.idata = response;
     res.render('partials/item-info', context);
+  });
+};
+
+exports.tooltip = function (req, res) {
+  var context = {
+    layout: false,
+    idata: {}
+  };
+  battleNetService.getItemByTooltip(req.params.tooltipParams, function(err, response){
+    context.idata = response;    
+    res.render('partials/tooltip', context);
   });
 };

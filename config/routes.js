@@ -20,10 +20,14 @@ module.exports = function (app, passport) {
   // Partials
   app.get('/character-info/:region/:battletag/:id', home.characterInfo);
   app.get('/item-info/:region/:id', home.itemInfo);
-  
+  app.get('/tooltip/item/:tooltipParams', home.tooltip);
+
   // API related calls
   app.get('/api/account/:region/:id', api.getAccount);
   app.get('/api/item/:region/:id', api.getItem);
+
+
+  app.get('/api/data/item/:tooltipParam', api.getItemByTooltip);
 
   /**
    * Error handling

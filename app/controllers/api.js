@@ -16,3 +16,9 @@ exports.getItem = function (req, res) {
     res.json(response);
   });
 };
+
+exports.getItemByTooltip = function (req, res) {
+  battleNetService.getItemByTooltip(req.params.tooltipParam, function(err, response){
+    res.json(response);
+  });
+};

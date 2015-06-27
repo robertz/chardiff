@@ -111,7 +111,7 @@
       <td>
         {{#if this.name}}
           <span class="item {{this.displayColor}} pull-left"><img src="//media.blizzard.com/d3/icons/items/large/{{{this.icon}}}.png" /></span>
-          <span class="text"><a href="http://us.battle.net/d3/en/item/{{this.slug}}" class="{{this.displayColor}}" title="{{this.name}}">{{this.name}}</a></span><br />
+          <span class="text"><a href="#" class="{{this.displayColor}}" title="{{this.name}}" data-tooltip="{{this.tooltipParams}}">{{this.name}}</a></span><br />
         {{else}}
           <div class="placeholder"></div>
         {{/if}}
@@ -121,6 +121,12 @@
 </table>
 
 
+
+<style>
+  .popover {
+    width: 800px;
+  }
+</style>
 <script type="text/javascript">
   $.fn.digits = function(){
     return this.each(function(){
@@ -139,26 +145,25 @@
     //   placement: 'top'
     // });
 
-    // $('.ajaxload').on('mouseover', function(event){
-    //   event.preventDefault();
-    //   var $this = $(this);
-    //   $this.off('mouseover');
-    //   $.ajax({
-    //     url: $(this).data('ajaxload'),
-    //     type: 'html',
-    //     cache: true,
-    //     success: function(data){
-    //       $this.popover({
-    //         html: true,
-    //         placement: 'top',
-    //         content: data,
-    //         trigger: 'hover'
-    //       }).popover('show');
-    //     }
-    //   })
-    // });
+    $('*[data-tooltip]').on('mouseover', function(event){
+      event.preventDefault();
+      var pos = $(this).closest('div').attr('class').indexOf('left') > 0 ? 'right' : 'left';
+      var $this = $(this);
+      $this.off('mouseover');
+      $.ajax({
+        url: '/tooltip/' + $(this).data('tooltip'),
+        cache: true,
+        success: function(data){
+          $this.popover({
+            html: true,
+            container: 'body',
+            placement: pos,
+            content: data,
+            trigger: 'hover'
+          }).popover('show');
+        }
+      });
+    });
 
   });
 </script>
-<!-- <script src="http://us.battle.net/d3/static/js/tooltips.js"></script> -->
-<script src="/js/tooltip.js"></script>

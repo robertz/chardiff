@@ -61,6 +61,14 @@ module.exports = {
         return cb(null, JSON.parse(body));
       }
     });
+  },
+
+  getItemByTooltip: function (tooltipParams, cb) {
+    request('https://us.battle.net/api/d3/data/item/' + tooltipParams, function(err, response, body){
+      if(!err){
+        cb(null, JSON.parse(body));
+      }
+    });
   }
 
 };
