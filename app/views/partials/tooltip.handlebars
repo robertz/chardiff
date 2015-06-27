@@ -18,15 +18,62 @@
       {{/each}}
     </ul>
   </div>
-
+  {{! gems }}
   {{#if idata.gems}}
     <div class="col-md-12">
       <strong>Gems</strong>
       <ul>
         {{#each idata.gems}}
-          <li>{{this.item.name}}: {{this.attributes.primary.0.text}}</li>
+          <li>
+            <img src="//media.blizzard.com/d3/icons/items/small/{{this.item.icon}}.png" width="25px" /> {{#if this.isJewel}}<span>{{this.item.name}}</span><br />{{/if}}
+            {{#if this.attributes.primary}}
+              {{#each this.attributes.primary}}
+                {{this.text}}
+              {{/each}}
+            {{/if}}
+            {{#if this.attributes.secondary}}
+              {{#each this.attributes.secondary}}
+                {{this.text}}
+              {{/each}}
+            {{/if}}
+            {{#if this.attributes.passive}}
+              {{#each this.attributes.passive}}
+                {{this.text}}
+              {{/each}}
+            {{/if}}
+          </li>
         {{/each}}
       </ul>
+    </div>
+  {{/if}}
+
+  {{! set items}}
+  {{#if idata.set}}
+    <div class="col-md-12">
+      <strong>{{idata.set.name}}</strong><br />
+      {{#each idata.set.items}}
+        {{this.name}}<br />
+      {{/each}}
+    </div>
+    <div class="col-md-12">
+      {{#each idata.set.ranks}}
+        ({{this.required}}) Set:<br />
+        {{#if this.attributes.primary}}
+          {{#each this.attributes.primary}}
+            {{this.text}}<br />
+          {{/each}}
+        {{/if}}
+        {{#if this.attributes.secondary}}
+          {{#each this.attributes.secondary}}
+            {{this.text}}<br />
+          {{/each}}
+        {{/if}}
+        {{#if this.attributes.passive}}
+          {{#each this.attributes.passive}}
+            {{this.text}}<br />
+          {{/each}}
+        {{/if}}
+      {{/each}}
     </div>
   {{/if}}
 </div>
