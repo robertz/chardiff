@@ -25,7 +25,7 @@
       <ul>
         {{#each idata.gems}}
           <li>
-            <img src="//media.blizzard.com/d3/icons/items/small/{{this.item.icon}}.png" width="25px" /> {{#if this.isJewel}}<span>{{this.item.name}}</span><br />{{/if}}
+            <img src="//media.blizzard.com/d3/icons/items/small/{{this.item.icon}}.png" width="25px" /> {{#if this.isJewel}}<span>{{this.item.name}} (Rank {{this.jewelRank}})</span><br />{{/if}}
             {{#if this.attributes.primary}}
               {{#each this.attributes.primary}}
                 {{this.text}}
