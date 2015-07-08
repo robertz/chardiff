@@ -82,3 +82,8 @@ a.yellow {
 .placeholder {
   height: 128px;
 }
+
+/* Tooltip*/
+div.tooltip-container {
+  font-size: 11px;
+}
