@@ -112,12 +112,25 @@
        }
        try{
          if($('select[name=left-char-list] option:selected').val().length && $('select[name=right-char-list] option:selected').val().length){
+           var payload = {
+             region1: $('select[name=left-char-region]').val(),
+             battletag1: $('input[name=left-account]').val(),
+             id1: $('select[name=left-char-list]').val(),
+             region2: $('select[name=right-char-region]').val(),
+             battletag2: $('input[name=right-account]').val(),
+             id2: $('select[name=right-char-list]').val()
+           };
            var permalink = 'http://' + location.hostname + '/compare/';
            var tem = '<a href="{url}" target="_blank">{url}</a>';
-           permalink += $('select[name=left-char-region]').val() + '/' + $('input[name=left-account]').val() + '/' + $('select[name=left-char-list]').val();
+           permalink += payload.region1 + '/' + payload.battletag1 + '/' + payload.id1;
            permalink += '/to/';
-           permalink += $('select[name=right-char-region]').val() + '/' + $('input[name=right-account]').val() + '/' + $('select[name=right-char-list]').val();
+           permalink += payload.region2 + '/' + payload.battletag2 + '/' + payload.id2;
            $('.permalink').html('<strong>Permalink:</strong> ' + tem.replace(new RegExp('{url}', 'g'), permalink));
+
+           $.ajax({
+             url: '/api/compare/' + payload.region1 + '/' + payload.battletag1 + '/' +payload.id1 + '/' + payload.region2 + '/' + payload.battletag2 + '/' + payload.id2,
+             cache: false
+           });
          }
        }
        catch(e){

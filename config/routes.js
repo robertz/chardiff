@@ -26,6 +26,8 @@ module.exports = function (app, passport) {
   app.get('/api/account/:region/:id', api.getAccount);
   app.get('/api/item/:region/:id', api.getItem);
 
+  // Save to recently compared
+  app.get('/api/compare/:region1/:battletag1/:id1/:region2/:battletag2/:id2', api.saveCompare);
 
   app.get('/api/data/item/:tooltipParam', api.getItemByTooltip);
 
