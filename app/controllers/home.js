@@ -5,6 +5,8 @@
 
 var request = require('request');
 var battleNetService = require('../services/battleNetService.js');
+var mongoose = require('mongoose');
+var CharacterCache = mongoose.model('CharacterCache');
 
 mapCharacterData = function (data) {
   if(typeof data.id === 'undefined') return data;
@@ -102,6 +104,32 @@ exports.characterInfo = function (req, res) {
     cdata: {}
   };
   battleNetService.getCharacter(req.params.region, req.params.battletag, req.params.id, function(err, response){
+    var characterCache = new CharacterCache({
+      region: req.params.region,
+      battletag: req.params.battletag,
+      id: req.params.id,
+      data: JSON.stringify(response)
+    });
+
+    CharacterCache.findOneAndUpdate(
+      { region: req.params.region, battletag: req.params.battletag, id: req.params.id },
+      {$set: {data: JSON.stringify(response)}},
+      {upsert: true},
+      function(err, res){
+       console.dir(err);
+       console.dir(res);
+      }
+    );
+
+
+    // CharacterCache.findAndModify({
+    //   query: { region: req.params.region, battletag: req.params.battletag, id: req.params.id },
+    //   update: {
+    //     $setOnInsert: { data: JSON.stringify(response)}
+    //   },
+    //   new: true,
+    //   upsert: true
+    // });
     context.cdata = mapCharacterData(response);
     res.render('partials/character-info', context);
   });
